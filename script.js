@@ -1,44 +1,52 @@
-// Ošetření inicializace Formspree podle dokumentace Vanilla JS
-window.formspree = window.formspree || function () { 
-    (formspree.q = formspree.q || []).push(arguments); 
+// Animace čísel v E-HUBu
+const stats = document.querySelectorAll('.stat-value');
+const speed = 200;
+
+const startCounters = () => {
+    stats.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText.replace(/\s/g, ''); // Odstranění mezer
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc).toLocaleString();
+                setTimeout(updateCount, 15);
+            } else {
+                counter.innerText = target.toLocaleString();
+            }
+        };
+        updateCount();
+    });
 };
 
-// Zde propojujeme formulář s tvým konkrétním endpointem (xjgplprp)
-document.addEventListener("DOMContentLoaded", function() {
+// Spuštění animace při srolování
+let observer = new IntersectionObserver((entries) => {
+    if(entries[0].isIntersecting) {
+        startCounters();
+        observer.unobserve(entries[0].target);
+    }
+}, { threshold: 0.5 });
+
+observer.observe(document.querySelector('.ehub-section'));
+
+// Formspree AJAX odeslání (vylepšené)
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const response = await fetch(e.target.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    });
     
-    // Inicializace Formspree
-    formspree('initForm', { 
-        formElement: '#my-form', 
-        formId: 'xjgplprp' 
-    });
-
-    // Custom ošetření po úspěšném odeslání (přepínání CSS tříd)
-    const form = document.getElementById('my-form');
-    const successMsg = document.querySelector('[data-fs-success]');
-    const errorMsg = document.querySelector('[data-fs-error]');
-
-    form.addEventListener('submit', function() {
-        // Skryje případné předchozí zprávy při novém pokusu
-        if(successMsg) successMsg.classList.add('hidden');
-        if(errorMsg) errorMsg.classList.add('hidden');
-    });
-
-    // Observer, který hlídá změny od knihovny Formspree a ukazuje zprávy plynule
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.attributeName === "style" || mutation.attributeName === "class") {
-                // Pokud Formspree knihovna odstraní atribut hidden, my odebereme naši třídu
-                if(successMsg.style.display !== 'none' && !successMsg.hasAttribute('hidden')) {
-                    successMsg.classList.remove('hidden');
-                    form.reset(); // Vyčistíme formulář po úspěchu
-                }
-                if(errorMsg.style.display !== 'none' && !errorMsg.hasAttribute('hidden')) {
-                    errorMsg.classList.remove('hidden');
-                }
-            }
-        });
-    });
-
-    if(successMsg) observer.observe(successMsg, { attributes: true });
-    if(errorMsg) observer.observe(errorMsg, { attributes: true });
+    if (response.ok) {
+        status.innerHTML = "<p style='color: green; font-weight: bold; margin-top: 10px;'>DORUČENO DO SYSTÉMU CP. Ozveme se!</p>";
+        form.reset();
+    } else {
+        status.innerHTML = "<p style='color: red;'>Chyba při odesílání.</p>";
+    }
 });
