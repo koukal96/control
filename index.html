@@ -3,239 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CONTROLPOINT s.r.o. | High-Tech Logistika</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- ZÁKLADNÍ PROMĚNNÉ --- */
-        :root {
-            --red: #e30613;
-            --red-dark: #b3000b;
-            --green: #00e676;
-            --dark: #0a0a0a;
-            --light: #f4f4f4;
-            --white: #ffffff;
-            --font-main: 'Inter', sans-serif;
-            --font-tech: 'Orbitron', sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-main); color: var(--dark); line-height: 1.6; background: var(--white); overflow-x: hidden; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .text-red { color: var(--red); }
-        .text-green { color: var(--green); }
-        .italic-tech { font-family: var(--font-tech); font-style: italic; text-transform: uppercase; }
-
-        /* --- NAVIGATION --- */
-        header { 
-            position: fixed; top: 0; width: 100%; height: 80px; 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); 
-            z-index: 1000; border-bottom: 1px solid #eee; transition: 0.4s;
-            display: flex; align-items: center;
-        }
-        header.scrolled { height: 65px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        
-        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo { font-family: var(--font-tech); font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; text-decoration: none; color: var(--dark); }
-        
-        .nav-menu { display: flex; gap: 30px; align-items: center; }
-        .nav-menu a { text-decoration: none; color: var(--dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: 0.2s; }
-        .nav-menu a:hover { color: var(--red); }
-        
-        .btn-nav { background: var(--red); color: white !important; padding: 10px 20px; border-radius: 5px; }
-
-        /* --- HERO SECTION --- */
-        .hero { padding: 180px 0 100px; position: relative; overflow: hidden; }
-        .hero-bg-grid { 
-            position: absolute; top: 0; right: 0; width: 50%; height: 100%; 
-            background-image: radial-gradient(var(--red) 1px, transparent 1px); 
-            background-size: 30px 30px; opacity: 0.05; z-index: -1;
-        }
-        .hero h1 { font-family: var(--font-tech); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1; margin-bottom: 20px; font-style: italic; }
-        .hero p { max-width: 600px; color: #666; font-size: 1.1rem; margin-bottom: 40px; }
-
-        .btn-primary { 
-            display: inline-block; background: var(--red); color: white; 
-            padding: 18px 35px; text-decoration: none; font-weight: 900; 
-            text-transform: uppercase; font-family: var(--font-tech); font-style: italic;
-            border-radius: 4px; transition: 0.3s; border: none; cursor: pointer;
-        }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(227, 6, 19, 0.3); }
-
-        /* --- STATS --- */
-        .stats { background: var(--dark); color: white; padding: 60px 0; border-bottom: 5px solid var(--red); }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center; }
-        .stat-item h2 { font-family: var(--font-tech); font-size: 3.5rem; font-style: italic; margin-bottom: 5px; }
-        .stat-item p { text-transform: uppercase; font-size: 0.75rem; tracking: 2px; color: #888; font-weight: 700; }
-
-        /* --- SERVICES --- */
-        .section { padding: 100px 0; }
-        .section-title { font-family: var(--font-tech); font-size: 2.5rem; font-style: italic; margin-bottom: 50px; position: relative; display: inline-block; }
-        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; h: 4px; background: var(--red); }
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card { padding: 40px; border: 1px solid #eee; transition: 0.3s; position: relative; overflow: hidden; }
-        .service-card:hover { border-color: var(--red); transform: translateY(-5px); }
-        .service-card h3 { font-family: var(--font-tech); margin-bottom: 15px; text-transform: uppercase; }
-
-        /* --- ELEKTRO HUB --- */
-        .bg-black { background: #050505; color: white; }
-        .progress-container { margin-top: 30px; max-width: 500px; }
-        .progress-bar { width: 100%; height: 6px; background: #222; border-radius: 10px; margin: 10px 0; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--green); box-shadow: 0 0 15px var(--green); transition: 2s ease-in-out; }
-
-        /* --- FAQ --- */
-        .faq-item { border-bottom: 1px solid #eee; padding: 20px 0; cursor: pointer; }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-family: var(--font-tech); font-style: italic; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s ease-out; color: #666; font-size: 0.95rem; }
-        .faq-item.active .faq-answer { max-height: 200px; margin-top: 15px; }
-        .faq-icon { transition: 0.3s; color: var(--red); font-size: 1.5rem; }
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
-
-        /* --- CONTACT --- */
-        .contact-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .form-group { margin-bottom: 20px; }
-        input, textarea { width: 100%; padding: 15px; border: 1px solid #eee; background: #f9f9f9; font-family: inherit; }
-        input:focus { border-color: var(--red); }
-
-        /* --- MARQUEE --- */
-        .marquee { overflow: hidden; padding: 40px 0; background: #fff; white-space: nowrap; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
-        .marquee-content { display: inline-block; animation: scroll 20s linear infinite; }
-        .marquee-content span { font-family: var(--font-tech); font-size: 2rem; color: #eee; margin: 0 40px; font-weight: 900; font-style: italic; }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* --- FOOTER --- */
-        footer { background: var(--dark); color: #555; padding: 40px 0; text-align: center; border-top: 1px solid #111; }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .contact-flex { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3rem; }
-        }
-    </style>
+    <title>CONTROLPOINT s.r.o. | Kamionová doprava & Logistika</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">CONTROL<span class="text-red">POINT</span></a>
-            <nav class="nav-menu">
+        <div class="nav-container">
+            <a href="#home" class="logo-link">
+                <img src="IMG_8852.png" alt="CONTROLPOINT" class="nav-logo">
+            </a>
+            <button class="mobile-menu-btn" id="menuBtn">☰</button>
+            <nav class="nav-menu" id="navMenu">
                 <a href="#o-nas">O nás</a>
                 <a href="#sluzby">Služby</a>
-                <a href="#elektro" class="text-green">200kW Hub</a>
-                <a href="#kontakt" class="btn-nav">Kontakt</a>
+                <a href="#hvo100">HVO100</a>
+                <a href="#elektro" class="nav-green">200kW Hub</a>
+                <a href="#faq">FAQ</a>
+                <a href="#kontakt" class="nav-btn">Kontakt</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-bg-grid"></div>
-        <div class="container">
-            <h1 class="italic-tech">VY OBJEDNÁTE.<br><span class="text-red">MY DOVEZEME.</span></h1>
-            <p>High-tech logistický uzel Věrovany. Kombinujeme precizní kamionovou dopravu s infrastrukturou budoucnosti. Rychle, digitálně, spolehlivě.</p>
+    <section id="home" class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="container hero-content">
+            <div class="badge-red">PROFI LOGISTIKA VĚROVANY</div>
+            <h1>VY OBJEDNÁTE.<br><span class="text-red">MY DOVEZEME.</span></h1>
+            <p class="hero-sub">Průsečík spolehlivé kamionové dopravy a moderní infrastruktury. Rychlost, efektivita a maximální nasazení pro vaše zásilky.</p>
             <div class="hero-actions">
-                <a href="#kontakt" class="btn-primary">Poptat přepravu</a>
+                <a href="#sluzby" class="btn-primary">Naše služby</a>
+                <a href="#hvo100" class="btn-outline-green">Eko doprava HVO100</a>
             </div>
         </div>
     </section>
 
-    <section class="stats">
+    <section class="stats-section">
         <div class="container stats-grid">
-            <div class="stat-item">
-                <h2 class="counter" data-target="15">0</h2>
-                <p>Vozidel v aktivní flotile</p>
+            <div class="stat-card">
+                <div class="stat-icon">🚚</div>
+                <div class="stat-number"><span class="counter" data-target="15">0</span></div>
+                <div class="stat-label">Vozidel ve flotile</div>
             </div>
-            <div class="stat-item">
-                <h2 class="counter" data-target="1500000">0</h2>
-                <p>Projetých km / rok</p>
+            <div class="stat-card">
+                <div class="stat-icon">🛣️</div>
+                <div class="stat-number"><span class="counter" data-target="1500000">0</span></div>
+                <div class="stat-label">Projetých kilometrů</div>
             </div>
-            <div class="stat-item">
-                <h2 class="counter text-green" data-target="100">0</h2>
-                <p>Využití paliva HVO100</p>
+            <div class="stat-card">
+                <div class="stat-icon">🛢️</div>
+                <div class="stat-number stat-green"><span class="counter" data-target="100">0</span></div>
+                <div class="stat-label">JEZDÍME NA HVO100</div>
             </div>
-            <div class="stat-item">
-                <h2 class="counter text-green" data-target="90">0</h2>
-                <p>Snížení emisí CO2</p>
+            <div class="stat-card">
+                <div class="stat-icon">🍃</div>
+                <div class="stat-number stat-green"><span class="counter" data-target="90">0</span></div>
+                <div class="stat-label">SNIŽUJEME CO2</div>
             </div>
         </div>
     </section>
 
-    <section id="sluzby" class="section">
+    <section id="o-nas" class="section bg-light">
+        <div class="container two-col">
+            <div class="text-content">
+                <h2 class="section-title">LOGISTICKÝ UZEL <span class="text-red">NOVÉ GENERACE</span></h2>
+                <p>Jsme stabilní partner pro vaše logistické výzvy. Naší hlavní doménou je <strong>spolehlivá kamionová doprava</strong> a budování moderní infrastruktury pro e-mobilitu. Náš areál ve Věrovanech tvoří strategický bod pro rychlou přepravu a operativní překládku.</p>
+                <ul class="check-list">
+                    <li>Vnitrostátní a mezinárodní kamionová přeprava</li>
+                    <li>Operativní překládka a deponování (Cross-dock)</li>
+                    <li>Digitální správa a sledování zásilek</li>
+                    <li>Rozvoj zázemí pro elektrické a HVO100 tahače</li>
+                </ul>
+            </div>
+            <div class="image-content tech-box">
+                <div class="tech-overlay">SYSTEM ACTIVE</div>
+                <div class="placeholder-img">LOGISTICKÉ CENTRUM</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hvo100" class="section">
+        <div class="container two-col">
+            <div class="image-content tech-box" style="border-color: #2ecc71;">
+                <div class="tech-overlay" style="background: #2ecc71;">ECO MODE</div>
+                <div class="placeholder-img" style="color: #2ecc71;">HVO100 COMPLIANT</div>
+            </div>
+            <div class="text-content">
+                <h2 class="section-title">BUDOUCNOST JE <span class="text-green">HVO100</span></h2>
+                <p>Jako jedni z mála implementujeme syntetickou naftu z obnovitelných zdrojů. S palivem <strong>HVO100</strong> nabízíme našim klientům možnost okamžitého snížení emisní stopy jejich dodavatelského řetězce.</p>
+                <ul class="check-list">
+                    <li>Snížení emisí skleníkových plynů až o 90 %</li>
+                    <li>Plně kompatibilní s motory Euro 6</li>
+                    <li>Vhodné pro ESG reporting vašich firem</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="sluzby" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">NAŠE <span class="text-red">SLUŽBY</span></h2>
+            <h2 class="section-title text-center">HLAVNÍ <span class="text-red">SLUŽBY</span></h2>
             <div class="services-grid">
                 <div class="service-card">
+                    <div class="s-icon">🚚</div>
                     <h3>Kamionová přeprava</h3>
-                    <p>FTL i LTL zásilky po celé EU s garantovaným časem doručení a moderním vozovým parkem Euro 6.</p>
+                    <p>Bezpečná a včasná přeprava vašeho zboží. Obsloužíme celovozové náklady i paletové zásilky. Vy objednáte, my dovezeme na čas.</p>
                 </div>
                 <div class="service-card">
-                    <h3>Skladování</h3>
-                    <p>Moderní skladovací kapacity ve Věrovanech. Cross-docking, krátkodobé i dlouhodobé uložení zboží.</p>
+                    <div class="s-icon">🔄</div>
+                    <h3>Cross-dock & Deponování</h3>
+                    <p>Nabízíme chytrou a rychlou operativu. Náš hlídaný areál je ideální pro rychlou překládku (cross-docking) a bezpečné krátkodobé deponování na vaší trase.</p>
                 </div>
                 <div class="service-card">
-                    <h3>Smart Logistika</h3>
-                    <p>Digitální správa zakázek, GPS tracking každého vozu a optimalizace tras pro maximální efektivitu.</p>
+                    <div class="s-icon">⚡</div>
+                    <h3>E-Mobilita & Smart Hub</h3>
+                    <p>Díváme se dopředu. Budujeme vysokovýkonné nabíjecí zázemí a kompletní dispečink s optimalizací tras v reálném čase.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="elektro" class="section bg-black">
+    <section id="elektro" class="section bg-dark-green">
         <div class="container">
-            <h2 class="section-title" style="color: white;">FUTURE <span class="text-green">HUB</span></h2>
-            <p style="color: #aaa; max-width: 600px;">Ve Věrovanech budujeme ultra-rychlý nabíjecí uzel o výkonu 200kW pro elektrické tahače i osobní vozidla. Připravujeme se na nulové emise.</p>
-            
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 65%;"></div>
+            <div class="electro-card">
+                <div class="electro-info">
+                    <div class="badge-green">STATUS: VE VÝSTAVBĚ</div>
+                    <h2 class="electro-title">ULTRA-FAST <span class="text-green">200kW</span> HUB</h2>
+                    <p>Připravujeme infrastrukturu na budoucnost e-mobility. V našem areálu budujeme vysokovýkonnou nabíjecí stanici, která dodá čistou energii elektrickým tahačům i osobním vozidlům.</p>
+                    
+                    <div class="progress-box">
+                        <div class="progress-header">
+                            <span>Instalace energetické sítě</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                        <p class="progress-detail">Plánované spuštění: Q3 2026</p>
+                    </div>
                 </div>
-                <p style="font-size: 0.8rem; color: var(--green); font-weight: bold;">STATUS: INSTALACE SÍTĚ (65%) | CÍL Q3 2026</p>
+                <div class="electro-visual">
+                    <div class="clean-energy-circle">
+                        <div class="gauge-inner">
+                            <span class="gauge-bolt">⚡</span>
+                        </div>
+                    </div>
+                </div>              
             </div>
         </div>
     </section>
 
-    <div class="marquee">
-        <div class="marquee-content">
-            <span>SCANIA</span><span>SCHMITZ</span><span>KRONE</span><span>VOLVO</span><span>SCANIA</span><span>SCHMITZ</span><span>KRONE</span><span>VOLVO</span>
+    <section class="partners-section">
+        <div class="container">
+            <h3 class="partners-title">NAŠI PARTNEŘI</h3>
+            <div class="marquee">
+                <div class="marquee-content">
+                    <span>SCANIA</span><span>SCHMITZ CARGOBULL</span><span>KRONE</span>
+                    <span>SCANIA</span><span>SCHMITZ CARGOBULL</span><span>KRONE</span>
+                    <span>SCANIA</span><span>SCHMITZ CARGOBULL</span><span>KRONE</span>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <section id="faq" class="section">
-        <div class="container" style="max-width: 800px;">
-            <h2 class="section-title">ČASTÉ <span class="text-red">DOTAZY</span></h2>
+    <section id="faq" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title text-center">ČASTÉ <span class="text-red">DOTAZY</span></h2>
+            <p class="text-center faq-subtitle">Nenašli jste, co hledáte? Žádný dotaz není zbytečný. Nebojte se nás kontaktovat, rádi vše vysvětlíme.</p>
+            
             <div class="faq-container">
                 <div class="faq-item">
-                    <div class="faq-question">Co je to HVO100? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">Syntetická nafta vyrobená z obnovitelných zdrojů, která snižuje emise skleníkových plynů až o 90 % oproti běžné naftě.</div>
+                    <button class="faq-question">Co přesně je palivo HVO100? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>HVO100 je obnovitelná nafta vyrobená ze zbytků olejů a tuků. Snižuje emise CO2 o 90 % a je plně zaměnitelná s běžnou naftou, aniž by poškozovala motory.</p>
+                    </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Kde přesně sídlíte? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">Naše hlavní logistické zázemí se nachází v obci Věrovany, strategicky umístěné pro Moravu i mezinárodní trasy.</div>
+                    <button class="faq-question">Zajišťujete vnitrostátní i mezinárodní přepravu? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Ano, naše vozidla běžně pokrývají jak vnitrostátní přepravu v rámci ČR, tak i mezinárodní trasy napříč celou Evropou.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Je možné u vás uskladnit zboží jen na pár dní? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Přesně pro tyto účely jsme tu. Nesloužíme jako dlouhodobý archiv zboží, ale nabízíme flexibilní krátkodobé deponování a rychlou překládku (cross-docking) pro plynulost vaší přepravy.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="kontakt" class="section" style="background: #fafafa;">
+    <section id="kontakt" class="section bg-light">
         <div class="container">
-            <div class="contact-flex">
-                <div>
-                    <h2 class="section-title">NAPIŠTE <span class="text-red">NÁM</span></h2>
-                    <p style="margin-bottom: 30px;">Máte zájem o cenovou nabídku nebo spolupráci? Náš dispečink je vám k dispozici.</p>
-                    <p><strong>ADRESA:</strong> Věrovany 94, 783 75</p>
-                    <p><strong>TEL:</strong> +420 601 371 211</p>
-                    <p><strong>EMAIL:</strong> info@control-point.eu</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2 class="section-title">KONTAKTNÍ <span class="text-red">CENTRUM</span></h2>
+                    <p>Jsme připraveni převzít váš náklad. Ozvěte se nám nebo rovnou nastavte navigaci do našeho hubu.</p>
+                    
+                    <div class="contact-details">
+                        <div class="c-item">
+                            <strong>📍 ADRESA</strong>
+                            <span>Věrovany 94, 783 75</span>
+                        </div>
+                        <div class="c-item">
+                            <strong>📞 DISPEČINK</strong>
+                            <span>+420 601 371 211</span>
+                        </div>
+                        <div class="c-item">
+                            <strong>✉️ EMAIL</strong>
+                            <span>info@control-point.eu</span>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=Věrovany+94" target="_blank" class="btn-primary btn-large btn-gps-nav" style="text-decoration:none;">
+                        🧭 SPUSTIT NAVIGACI (GPS)
+                    </a>
                 </div>
-                <div>
-                    <form id="contactForm">
-                        <div class="form-group"><input type="text" placeholder="Vaše jméno / Firma" required></div>
-                        <div class="form-group"><input type="email" placeholder="Váš E-mail" required></div>
-                        <div class="form-group"><textarea rows="5" placeholder="Vaše zpráva"></textarea></div>
-                        <button type="submit" class="btn-primary" style="width: 100%;">Odeslat systémovou zprávu</button>
+                
+                <div class="contact-form-box">
+                    <h3>RYCHLÝ DOTAZ</h3>
+                    <form id="contactForm" action="https://formspree.io/f/xjgplprp" method="POST">
+                        <input type="text" name="name" placeholder="Jméno / Firma" required>
+                        <input type="email" name="email" placeholder="E-mail" required>
+                        <textarea name="message" placeholder="Jak vám můžeme pomoci?" rows="4" required></textarea>
+                        <button type="submit" class="btn-primary w-100">Odeslat zprávu</button>
                     </form>
                 </div>
             </div>
@@ -243,73 +236,33 @@
     </section>
 
     <footer>
-        <div class="container">
-            <p>© 2026 CONTROLPOINT s.r.o. | DESIGNED FOR HIGH-TECH LOGISTICS</p>
+        <div class="container footer-content">
+            <div class="f-logo"><h2 style="color: white; font-size: 1.2rem; margin: 0;">CONTROL<span class="text-red">POINT</span></h2></div>
+            <div class="f-links">
+                <a href="#">Ochrana osobních údajů</a>
+                <a href="#">Všeobecné obchodní podmínky</a>
+            </div>
+            <div class="f-copy">© 2026 CONTROLPOINT s.r.o. Všechna práva vyhrazena.</div>
         </div>
     </footer>
 
-    <script>
-        // 1. Sticky Navbar
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('navbar');
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="container cookie-flex">
+            <p>Pro správnou funkci tohoto webu používáme cookies. 🍪</p>
+            <button class="btn-primary" id="acceptCookiesBtn">Rozumím a přijímám</button>
+        </div>
+    </div>
 
-        // 2. FAQ Accordion
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <div class="modal-icon">✓</div>
+            <h3 style="color: var(--dark); font-family: var(--font-heading); margin-bottom: 10px;">Zpráva odeslána!</h3>
+            <p style="color: #555; font-size: 0.95rem;">Děkujeme za váš dotaz. Naši dispečeři se vám v co nejkratší době ozvou zpět.</p>
+            <button class="btn-primary mt-20" id="closeModalBtn2">Zavřít okno</button>
+        </div>
+    </div>
 
-        // 3. Počítadla (Counters)
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-
-        const startCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText.replace('%', '').replace(/\s/g, '');
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        const nextVal = Math.ceil(count + inc);
-                        if (target === 100 || target === 90) {
-                            counter.innerText = nextVal + " %";
-                        } else {
-                            counter.innerText = nextVal.toLocaleString('cs-CZ');
-                        }
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.innerText = target === 100 || target === 90 ? target + " %" : target.toLocaleString('cs-CZ');
-                    }
-                };
-                updateCount();
-            });
-        };
-
-        // Spuštění počítadel při scrollu
-        const observer = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting) {
-                startCounters();
-                observer.disconnect();
-            }
-        }, { threshold: 0.5 });
-        
-        observer.observe(document.querySelector('.stats'));
-
-        // 4. Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            btn.innerText = "ODESÍLÁM...";
-            setTimeout(() => {
-                btn.innerText = "ZPRÁVA PŘIJATA ✓";
-                btn.style.background = "#22c55e";
-                this.reset();
-            }, 1500);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
