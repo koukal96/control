@@ -1,0 +1,349 @@
+/* --- ZÁKLADNÍ NASTAVENÍ A BARVY --- */
+:root {
+    --scania-ivory: #F9F9F6; /* Teplá bílá */
+    --pure-white: #FFFFFF;
+    --cp-red: #cc0605; /* Odstín blízký RAL 3020 */
+    --cp-red-hover: #a30504;
+    --text-dark: #1A1A1A;
+    --text-light: #666666;
+    --whatsapp-green: #25D366;
+    --whatsapp-green-hover: #1EBE5D;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--scania-ivory);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- NAVIGACE A HLAVIČKA --- */
+.navbar {
+    background-color: var(--pure-white);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+    object-fit: contain;
+}
+
+.logo span {
+    font-weight: 300;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--cp-red);
+}
+
+/* --- HERO SEKCE --- */
+.hero {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--pure-white), var(--scania-ivory));
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.hero h1 span {
+    color: var(--cp-red);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 15px 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: var(--cp-red);
+    color: var(--pure-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--cp-red-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-whatsapp {
+    background-color: var(--whatsapp-green);
+    color: var(--pure-white);
+}
+
+.btn-whatsapp:hover {
+    background-color: var(--whatsapp-green-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* --- GALERIE (PŘÍPRAVA) --- */
+.gallery-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    background-color: var(--pure-white);
+    border-radius: 10px;
+    height: 250px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #e0e0e0;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+/* --- KONTAKT A FORMULÁŘ --- */
+.contact-section {
+    padding: 80px 0;
+    background-color: var(--pure-white);
+}
+
+.contact-wrapper {
+    display: flex;
+    gap: 50px;
+    background: var(--scania-ivory);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 30px;
+    color: var(--text-dark);
+}
+
+.info-item i {
+    color: var(--whatsapp-green);
+    font-size: 2rem;
+}
+
+.contact-form-container {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--pure-white);
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--cp-red);
+}
+
+.btn-submit {
+    width: 100%;
+    justify-content: center;
+}
+
+.error-msg {
+    color: var(--cp-red);
+    font-size: 0.85rem;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
+/* Styly pro Formspree úspěch/chyba */
+.fs-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid #28a745;
+}
+
+.fs-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--cp-red);
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- PATIČKA --- */
+footer {
+    background-color: var(--text-dark);
+    color: var(--pure-white);
+    text-align: center;
+    padding: 30px 0;
+}
+
+/* --- PLOVOUCÍ WHATSAPP WIDGET --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--whatsapp-green);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
+/* --- RESPONZIVITA (PRO MOBILY) --- */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        display: none; /* Pro mobil lze přidat hamburger menu, zatím skryto pro čistotu */
+    }
+}
