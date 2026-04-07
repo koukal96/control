@@ -3,97 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Point | Top Servis</title>
+    <title>CONTROL POINT | Transport E-HUB</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </head>
 <body>
 
-    <a href="https://wa.me/420601371211" target="_blank" class="whatsapp-float" aria-label="Napište nám na WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <div class="logo">
+                <span class="logo-red">CONTROL</span>POINT
+            </div>
+            <ul class="nav-links">
+                <li><a href="#ehub">E-HUB</a></li>
+                <li><a href="#vozovy-park">Vozový park</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <header class="navbar">
-        <div class="container">
-            <a href="#" class="logo">
-                <img src="logo-cp-hlava.png" alt="Control Point Logo">
-                <span>CONTROL <strong>POINT</strong></span>
-            </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#o-nas">O nás</a></li>
-                    <li><a href="#galerie">Galerie</a></li>
-                    <li><a href="#kontakt">Kontakt</a></li>
-                </ul>
-            </nav>
+    <header class="hero-truck">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>LEVEL <span>101</span> TRANSPORT</h1>
+                <p>Vaše logistika pod absolutní kontrolou. Scania Ivory White Edition.</p>
+                <div class="hero-btns">
+                    <a href="#kontakt" class="btn-main">Poptat přepravu</a>
+                    <a href="https://wa.me/420601371211" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+            <div class="truck-visual">
+                <img src="kamion-scania.png" alt="Control Point Scania" class="truck-img">
+            </div>
         </div>
     </header>
 
-    <section class="hero">
+    <section id="ehub" class="ehub-section">
         <div class="container">
-            <h1>Posuneme vaši flotilu do <span>TOPu</span></h1>
-            <p>Profesionální přístup, smysl pro detail a barvy, které ladí. Vaše Scania si zaslouží to nejlepší.</p>
-            <div class="hero-buttons">
-                <a href="#kontakt" class="btn btn-primary">Napsat zprávu</a>
-                <a href="https://wa.me/420601371211" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="galerie" class="gallery-section">
-        <div class="container">
-            <h2>Naše práce</h2>
-            <p class="subtitle">Fotky projektů a detailů z naší dílny (album bude doplněno)</p>
-            <div class="gallery-grid">
-                <div class="gallery-item placeholder"><i class="fas fa-camera"></i></div>
-                <div class="gallery-item placeholder"><i class="fas fa-camera"></i></div>
-                <div class="gallery-item placeholder"><i class="fas fa-camera"></i></div>
+            <h2 class="section-title">CONTROL POINT <span>E-HUB</span></h2>
+            <p class="section-subtitle">Živá data z naší flotily</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-truck"></i></div>
+                    <div class="stat-value" data-target="38">0</div>
+                    <div class="stat-label">Aktivních souprav</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-globe-europe"></i></div>
+                    <div class="stat-value" data-target="15">0</div>
+                    <div class="stat-label">Států EU v dosahu</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="stat-value" data-target="980000">0</div>
+                    <div class="stat-label">Najeto km / měsíc</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="stat-value" data-target="100">0</div>
+                    <div class="stat-label">% Spolehlivost</div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="kontakt" class="contact-section">
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h2>Dejte nám vědět</h2>
-                    <p>Máte dotaz? Chcete nezávaznou kalkulaci? Napište nám přes formulář nebo se ozvěte rovnou na WhatsApp.</p>
-                    <div class="info-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>+420 601 371 211</span>
-                    </div>
+        <div class="container contact-grid">
+            <div class="contact-info">
+                <h2>Kontaktujte <span>Dispečink</span></h2>
+                <p>Jsme na příjmu 24/7 pro vaše urgentní náklady.</p>
+                <div class="info-row">
+                    <i class="fas fa-phone"></i>
+                    <span>+420 601 371 211</span>
                 </div>
-
-                <div class="contact-form-container">
-                    <div data-fs-success class="fs-success hidden">Díky moc! Zpráva byla úspěšně odeslána. Brzy se ozveme.</div>
-                    <div data-fs-error class="fs-error hidden">Něco se pokazilo, zkuste to prosím znovu.</div>
-
-                    <form id="my-form" class="custom-form">
-                        <div class="form-group">
-                            <label for="email">Váš e-mail</label>
-                            <input type="email" id="email" name="email" placeholder="vas@email.cz" data-fs-field required>
-                            <span data-fs-error="email" class="error-msg"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Vaše zpráva</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Co pro vás můžeme udělat?" data-fs-field required></textarea>
-                            <span data-fs-error="message" class="error-msg"></span>
-                        </div>
-                        
-                        <button type="submit" data-fs-submit-btn class="btn btn-primary btn-submit">Odeslat dotaz</button>
-                    </form>
+                <div class="info-row">
+                    <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                    <span>WhatsApp Chat</span>
                 </div>
+            </div>
+            
+            <div class="form-wrapper">
+                <form action="https://formspree.io/f/xjgplprp" method="POST" id="contact-form">
+                    <input type="email" name="email" placeholder="Váš pracovní e-mail" required>
+                    <textarea name="message" placeholder="Specifikace nákladu, trasa, termín..." rows="5" required></textarea>
+                    <button type="submit" class="btn-submit">ODESLAT DOTAZ</button>
+                </form>
+                <div id="form-status"></div>
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 CONTROL POINT. Všechna práva vyhrazena.</p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
